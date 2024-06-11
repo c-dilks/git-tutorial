@@ -1,3 +1,9 @@
+# Prerequisites
+
+- [ ] generate GitHub SSH key pair
+- [ ] fork Iguana
+  - upper right corner, click "Fork", then "Create Fork"
+
 # Creating a new repository
 
 > [!TODO]
@@ -235,7 +241,7 @@ Date:   Tue Jun 11 09:43:18 2024 -0400
     my first git commit
 ```
 
-## Checking out other commits
+# Checking out other commits
 
 Up until now, it seems that `git commit` is just like pressing the "save
 button", but `git` offers so much more. For example, you can revert your
@@ -279,7 +285,7 @@ Now your `HEAD` is attached, since it's pointing at your `main` branch.
 > If you do this multiple times, you'll oscillate between the two commits.
 <!--`-->
 
-## Syncing with remotes, e.g., GitHub
+# Syncing with remotes, e.g., GitHub
 
 `git` becomes much more powerful when you synchronize it with a "remote" repository. Typically you need a _host_ for the
 remote repository; some example hosts:
@@ -296,6 +302,7 @@ start to see their differences.
 Since GitHub is very popular, we'll continue this tutorial assuming you are using GitHub. This assumes that:
 - you have a GitHub account
 - you have generated an SSH key pair, and uploaded the public key to GitHub
+- you have configured SSH client to use this key for GitHub
 
 First, we need to create a GitHub repository. In the upper right corner, click the plus sign, then "New repository". Then,
 1. give it a name; our name was `my_project` (note it doesn't have to match the directory name, but that's conventional)
@@ -332,3 +339,210 @@ origin	git@github.com:c-dilks/my_project.git (push)
 ```
 - the name and SSH address are shown
 - `fetch` means "for downloading" and `push` means "for uploading"; they are usually the same address
+
+Next, synchronize your local repository with the remote by
+_pushing_ your local `main` branch (assumes your `HEAD`
+points to `main`):
+```bash
+git push
+```
+```
+fatal: The current branch main has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin main
+```
+This failed because the `main` branch does not yet
+exist on the `origin` remote.
+
+> [!NOTE]
+> If you got a different failure, probably "Permission denied",
+> then your SSH client is not correctly configured.
+
+Do what it says, which will
+_create_ the `main` branch on the `origin` remote:
+```bash
+git push --set-upstream origin main
+```
+
+Now refresh your web browser's view of your repository, and
+now you'll see your files!
+
+**Exercise**: make more changes, commit, and push. The sequence after making your change should be something like:
+```bash
+git status
+git diff
+git add -A
+git commit -m "my third git commit"
+git push
+```
+Notice you didn't need `--set-upstream origin main` in your
+`git push` command. This is because:
+- your remote `main` branch exists
+- your local `main` branch is _tracking_ your remote `main`
+  branch; since your remote is named `origin`, your remote
+  `main` branch is named `origin/main` (you'll see that
+  in commands such as `git status`)
+
+# Forks and Branches - working with your collaborators
+
+In the interest of time, we'll attempt to cover _both_ forks
+and branches. Everything we'll cover here about _branches_
+applies also when you do _not_ create a fork; we want to
+cover forking, however, since that will allow to make
+contributions to _any_ GitHub repository.
+
+> [!NOTE]
+> Forking is a concept specific to GitHub, whereas branching
+> is a `git` concept and applies to any remote host.
+> - A fork is basically a _copy_ of the _full_ repository, a
+>   copy that _you_ may do whatever _you_ want with
+> - A branch is a pointer to a certain commit; this will
+>   be clearer after we create a branch
+
+Let's say you want to make a contribution to
+[Iguana](https://github.com/JeffersonLab/iguana).
+Fork it (see [prerequisites guide](prerequisites.md)), then
+_clone_ your fork, which will download the repository to
+your current working directory into a folder named `iguana`.
+- In the upper right corner, click the green "Code" button
+- Choose the SSH tab (if you're not logged in, use HTTPS, but
+  you won't be able to `git push`)
+- Copy the `git@github.com` URL, and use it in the following
+  command (replace `SSH_URL`):
+```bash
+git clone SSH_URL
+cd iguana
+```
+
+> [!NOTE]
+> You can clone any GitHub (or GitLab) repository.
+
+If you run `git remote -v`, you'll see the `origin` remote
+is already set to that clone URL. Since we want to also
+synchronize to the [_primary_ `iguana` fork](https://github.com/JeffersonLab/iguana), let's also add that remote; it
+is conventional to name the _primary_ fork remote `upstream`.
+```bash
+git remote add upstream git@github.com:JeffersonLab/iguana.git
+```
+My result of `git remote -v` looks like:
+```
+origin	git@github.com:c-dilks/iguana.git (fetch)
+origin	git@github.com:c-dilks/iguana.git (push)
+upstream	git@github.com:JeffersonLab/iguana.git (fetch)
+upstream	git@github.com:JeffersonLab/iguana.git (push)
+```
+
+> [!NOTE]
+> Your local `main` branch tracks your fork's `main` branch,
+> `origin/main` (run `git status` to see), but _not_ the
+> primary fork's `main` branch, `upstream/main`
+
+Update your local repository's _knowledge_ about the
+`upstream` remote; this does _not_ change any files
+within your repository (i.e., your `HEAD`), except for stuff
+in your `.git/` subdirectory. This is called _fetching_:
+```bash
+git fetch upstream
+```
+You'll see all the branches and tags that are on `upstream`.
+
+> [!NOTE]
+> Running `git fetch origin` will fetch from your fork, but
+> that won't do anything at this time since you _just_ created
+> your fork, and there is nothing new to fetch
+
+Now you are ready to contribute to `iguana`!
+
+You can get started working, but you are currently on the
+`main` branch. It is wise to create a new branch first.
+Choose a name that you can remember, something that is
+related to the work you will do. In this to tutorial, we'll
+name it `tutorial-branch`. To create the branch and check
+it out, run:
+```bash
+git checkout -b tutorial-branch
+```
+Running `git status` will show that you're on your
+new branch.
+
+Now you are _actually_ ready to contribute to `iguana`!
+
+> [!TIP]
+> Some more helpful commands for working with branches:
+> - get the current branch name:
+> ```bash
+> git rev-parse --abbrev-ref HEAD
+> ```
+> - list all the local branches, sorted:
+> ```bash
+> git branch --sort=-committerdate --column dense
+> ```
+> - list all the remote branches:
+> ```bash
+> git branch --sort=-committerdate --column dense --remote
+> ```
+> - be verbose:
+> ```bash
+> git branch -vv
+> git branch -vv --remote
+> ```
+<!--`-->
+
+> [!TIP]
+> Git commits form a Directed Acyclic Graph (DAG). Each commit
+> may have one or more _parent_ commits, and a commit can
+> have one or more subsequent _child_ commits. To see the
+> `iguana` commit DAG:
+> - click the "Insights" tab on the repository webpage
+> - click "Network Graph" on the left
+> To see the DAG locally:
+> ```bash
+> git log --decorate --oneline --graph
+> ```
+> This just shows `HEAD` and the commits that lead to it; to
+> see _everything_, add the `--all` option.
+<!--`-->
+
+> [!TIP]
+> Iguana's commit DAG is _linaer_, since Iguana merges pull
+> requests with the _squash_ method. Other repositories use
+> different methods, _e.g._, `coatjava`. Clone it and take
+> a look!
+
+> [!TIP]
+> Some of these `git` commands are long and hard to remember.
+> It's useful to make _aliases_, which you can add to your
+> `~/.gitconfig`. Here are my aliases (use the `git`
+> documentation if you want to know what they do):
+> ```ini
+> [alias]
+>   g="log --decorate --oneline --graph"
+>   ga="log --decorate --oneline --graph --all"
+>   s="status"
+>   d="diff"
+>   ds="diff --staged"
+>   dn="diff --name-only"
+>   a="add"
+>   c="commit"
+>   ca="commit -a"
+>   p="push"
+>   pf="push --force-with-lease"
+>   b="branch --sort=-committerdate --column=dense"
+>   bc="rev-parse --abbrev-ref HEAD"
+>   br="branch --sort=-committerdate --column=dense --remote"
+>   bv="branch -vv"
+>   co="checkout"
+>   cob="checkout -b"
+>   m="merge"
+>   r="rebase"
+>   rc="rebase --continue"
+>   rrhh="reset --hard"
+>   rv="remote -v"
+>   u="pull"
+>   f="fetch"
+>   fo="fetch origin"
+>   fu="fetch upstream"
+> ```
+> For example, `git s` will run `git status`
+<!--`-->
