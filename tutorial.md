@@ -113,6 +113,19 @@ commit message, and more; it is a _unique_ identifier for this commit.
 
 You have now committed to `git`!
 
+> [!TIP]
+> It's good practice to commit often, and to make each commit
+> a focused change of your code. To help keep your commits
+> focused, consider using
+> [conventional commits](https://www.conventionalcommits.org/)
+>
+> If your commits are small, it's easier for your future self
+> and others to follow what you did, and it makes it easier
+> to do `git` operations such as
+> - `git revert`: undo a commit with a new commit
+> - `git cherry-pick`: replay a commit elsewhere
+> - `git rebase`: move a set of consecutive commits elsewhere
+
 # Your second commit
 
 Let's get some work done:
@@ -384,7 +397,38 @@ Notice you didn't need `--set-upstream origin main` in your
   `main` branch is named `origin/main` (you'll see that
   in commands such as `git status`)
 
-# Forks and Branches - working with your collaborators
+# Working on multiple computers
+
+It's 2024 and many of us work on more than one computer. Thus
+we will eventually have more than one copy of a `git`
+repository. There are two commands that are used to get
+updates from the common remote repository: `fetch` and `pull`.
+
+`git fetch` is used to just get the information from the
+remote repository; it will not alter your local files. It
+needs the remote name (`origin`, here):
+```bash
+git fetch origin
+```
+
+On the other hand, `git pull` will not only `fetch`, but also
+will _synchronize_ your local repository with the remote,
+altering your local files to match the remote files:
+```bash
+git pull
+```
+So, if you are working on your office computer and want to
+go work from home, first commit to `git` and `push` to remote.
+Then when you are on your home computer, run `git pull` and
+get back to work!
+
+> [!NOTE]
+> What if you forget to `pull` and push commits? `git` may
+> complain about conflicts. Follow the directions, and
+> [see here for more guidance](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
+
+# Working with Others
+## Forks and Branches
 
 In the interest of time, we'll attempt to cover _both_ forks
 and branches. Everything we'll cover here about _branches_
@@ -468,6 +512,13 @@ new branch.
 
 Now you are _actually_ ready to contribute to `iguana`!
 
+Go ahead and edit some files, then make a `git commit`. When
+you `git push`, you will be pushing to _your_ branch
+(`tutorial-branch`) on _your_ fork; the first time you run
+`git push`, you'll need
+`--set-upstream origin tutorial-branch`, but every time after
+you can just run `git push`.
+
 > [!TIP]
 > Some more helpful commands for working with branches:
 > - get the current branch name:
@@ -546,3 +597,128 @@ Now you are _actually_ ready to contribute to `iguana`!
 > ```
 > For example, `git s` will run `git status`
 <!--`-->
+
+## Keeping up-to-date with Upstream
+
+While you are working on your branch, work may be ongoing
+on other branches, including `upstream/main`. It's a good
+idea to keep your branch up-to-date with respect to upstream
+changes. You can do this a few different ways:
+
+1. Backmerging
+
+Merge the upstream's `main` branch into yours; this is
+sometimes called "backmerging". In summary, run:
+```bash
+git fetch upstream
+git merge upstream/main
+git push
+```
+
+2. Rebasing
+
+Alternatively, _rebase_ your branch onto `upstream/main`;
+in summary, run:
+```bash
+git fetch upstream
+git rebase upstream/main
+git push --force-with-lease
+```
+
+The choice between (1) and (2) depends on your preference, and
+the preference of the `upstream` maintainers; (1) is easier
+whereas (2) creates a cleaner DAG at the cost of rewriting
+`git` history (which is why `--force-with-lease` is needed).
+
+- More details: [Merging vs. Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+
+In either (1) or (2), you may experience CONFLICTs. This can
+happen when `git` cannot decide which changes to keep/delete
+between your branch and `upstream/main`. Conflict resolution
+is beyond the scope of this tutorial; for guidance, see:
+
+- [Merge conflict resolution](https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts)
+- [Rebase conflict resolution](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase)
+
+Furthermore, your fork's `main` branch may fall behind
+`upstream/main`. The easiest way to update it is to:
+```bash
+git checkout main   # switch to your 'main'
+git fetch origin
+git merge origin/main
+git push
+```
+If you don't commit to `main`, you won't have to worry
+about conflicts on `main`.
+
+## Pull Requests
+
+A pull request (PR) is a proposal to merge one branch into
+another, typically your development branch into the
+upstream's `main` branch. If you want your code to be
+included in `main`, make a PR.
+
+> [!NOTE]
+> GitLab calls these "Merge Requests"
+
+You can start a Pull Request by going to the `upstream`
+repository's webpage on GitHub. You might already see
+a notification about your branch and a button to create
+a PR; if so, just click that. If not:
+- go to the pull requests tab
+- click new pull request
+- since your branch is on a fork, click "compare
+  across forks"
+- set the head repository to your fork
+- set the head branch to your branch
+
+Then fill out the form. Before clicking the final "create
+pull request":
+- if you are _ready_ to be reviewed, just click it
+- if your branch is still a work in progress, click the
+  drop down arrow, and choose "draft pull request"
+
+> [!TIP]
+> It's perfectly fine (and _preferred_) to create a **draft**
+> PR, even as early as your first commit; this
+> will inform maintainers of your _intent_, and will trigger
+> Continuous Integration (automated tests, etc.)
+
+In your PR, there are 4 tabs:
+- Conversation: this is the history, things that happened,
+  and review comments and conversations
+- Commits: the list of commits starting from the first commit
+  that comes after the first commit that is common between
+  your branch and the target branch, and ending with the
+  last commit, the one your branch points to
+- Checks: the Continuous Integration (CI) tests, which run
+  automatically, typically triggered by each commit; common
+  tests include
+  - build tests
+  - runtime tests
+  - validation
+- Files changed: perhaps the most important tab, this shows
+  the `git diff` between your branch and the target branch
+
+When you are ready for your PR to be _reviewed_,
+click the "mark as ready" button, which will change your
+PR state from "draft" to "open". If you want to
+abandon your PR, _close_ it (you can always
+re-open it, if needed).
+
+Once your PR is open, others may review it; you can also
+request reviews from specific people. They may:
+- approve it, and not request any changes
+- request changes, giving feedback as comments; in this case
+  respond to all of their "conversations", and mark them
+  as resolved when you have "resolved" them
+- reject it, by closing it; this is rare, but it's always good
+  to create draft PRs, in case a maintainer steps in and says
+  "hey, this is a bad idea" sooner rather than later
+
+If your PR is approved, either you or the maintainer may
+_merge_ it into the `main` branch. At this point, you may
+delete your branch (click the delete branch button), or
+it may be automatically be deleted. Since your branch has
+been merged, there is no need to keep it around (and you can
+always restore it anyway).
