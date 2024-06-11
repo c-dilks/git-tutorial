@@ -12,7 +12,8 @@ cd my_project
 ```
 Now you may add your files, code, etc.
 
-> [!TIP] `git` is not meant to store large files. If you want to store large files, it's better to use another service, _e.g._,
+> [!TIP]
+> `git` is not meant to store large files. If you want to store large files, it's better to use another service, _e.g._,
 > [GitHub Large File Storage.](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage).
 
 For this tutorial, let's add a couple sample files and a new directory. You may copy and paste each of these command blocks into your shell; note that
@@ -180,7 +181,8 @@ git add data/jlab_halls.txt
 
 Running `git status` will now show that you _renamed_ `data/halls.txt`.
 
-> [!TIP] Notice that you had to add _both_ the original `halls.txt` and `jlab_halls.txt`; you could have alternatively used `git mv` instead of `mv` to rename the file
+> [!TIP]
+> Notice that you had to add _both_ the original `halls.txt` and `jlab_halls.txt`; you could have alternatively used `git mv` instead of `mv` to rename the file
 
 At this point, you may be annoyed at running all these `git add` commands. You could use `git add -A` to add everything, but that will include the `.dat` files, which we don't want `git` to track. So, let's create a `.gitignore` file. First, let's unstage all our changes to see how this will work:
 ```bash
