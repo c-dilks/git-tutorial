@@ -94,13 +94,13 @@ Now if you run `git status`, it will just say that `data/` and `sample_data.dat`
 git log
 ```
 ```
-commit 9e4d879fab49fcfbabfb4e94f257a7985be6d33c (HEAD -> main)
+commit 8d2de90d0635e3e02160a62fd9920c1c29b1ae2f
 Author: Christopher Dilks <c-dilks@users.noreply.github.com>
-Date:   Mon Jun 10 16:55:18 2024 -0400
+Date:   Tue Jun 11 09:43:18 2024 -0400
 
     my first git commit
 ```
-- The long hexadecimal number `9e4d879fab49fcfbabfb4e94f257a7985be6d33c` is the "commit hash", a cryptographic hash based on your files, author name,
+- The long hexadecimal number `8d2de90d0635e3e02160a62fd9920c1c29b1ae2f` is the "commit hash", a cryptographic hash based on your files, author name,
 commit message, and more; it is a _unique_ identifier for this commit.
 - `HEAD -> main` means that your current state, called `HEAD`, is at the same point as the current `main` branch
 - The author name, date, and commit message are also shown
@@ -197,7 +197,6 @@ Changes to be committed:
 	renamed:    info/halls.txt -> info/jlab_halls.txt
 	modified:   lists.txt
 ```
-Now you are ready to commit!
 
 > [!TIP]
 > What if you forgot to run `git diff`, and you want to see the changes? Try running `git diff` and you'll see _no_ changes! To see
@@ -213,3 +212,123 @@ Now you are ready to commit!
 > git diff --help
 > ```
 <!--`-->
+
+Now you are ready to commit:
+```bash
+git commit -m "my second git commit"
+```
+Run `git log` to see all your commits:
+```bash
+git log
+```
+```
+commit 9257afc0fd842b12a3ebb844f5b95cf849c2acb7 (HEAD -> main)
+Author: Christopher Dilks <c-dilks@users.noreply.github.com>
+Date:   Tue Jun 11 09:44:16 2024 -0400
+
+    my second git commit
+
+commit 8d2de90d0635e3e02160a62fd9920c1c29b1ae2f
+Author: Christopher Dilks <c-dilks@users.noreply.github.com>
+Date:   Tue Jun 11 09:43:18 2024 -0400
+
+    my first git commit
+```
+
+## Checking out other commits
+
+Up until now, it seems that `git commit` is just like pressing the "save
+button", but `git` offers so much more. For example, you can revert your
+repository to any previous commit. Since there are only 2 commits, and you are
+on the later one, let's roll back to the previous commit; note that your _commit hash_
+will certainly be different from this example (so don't just copy paste this command):
+```
+git checkout 8d2de90d0635e3e02160a62fd9920c1c29b1ae2f
+```
+It will complain that you are in a 'detached HEAD state'. Don't worry, `git` is not talking about
+your actual head on top of your shoulders, rather it's talking about the current state of your repository,
+which is called `HEAD`. It is "detached" since it is not pointing to any branch, and your only branch is
+`main`, which is currently at the later commit.
+
+Take a look at your code, and notice that things are reverted; don't make any changes, otherwise you'll
+need to figure out how to make a branch (later in the tutorial).
+
+> [!TIP]
+> Usually the first 7 characters of a commit hash are unique enough, so we could have gotten the same
+> result with
+> ```bash
+> git checkout 8d2de90
+> ```
+> You may often see this representation on places like GitHub. When in doubt, just use the full commit hash;
+> some commands don't work correctly if you use the short hash.
+<!--`-->
+
+Let's go back to the `main` branch. In `git log`, you'll notice the `main` branch is at the later commit, so
+you can just checkout `main` rather than copy-pasting the commit hash:
+```bash
+git checkout main
+```
+Now your `HEAD` is attached, since it's pointing at your `main` branch.
+
+> [!TIP]
+> Someday you may want to `checkout` what you checked out previously. Just like the `cd -` command, you can use a
+> hyphen to mean "checkout the last place `HEAD` was":
+> ```bash
+> git checkout -
+> ```
+> If you do this multiple times, you'll oscillate between the two commits.
+<!--`-->
+
+## Syncing with remotes, e.g., GitHub
+
+`git` becomes much more powerful when you synchronize it with a "remote" repository. Typically you need a _host_ for the
+remote repository; some example hosts:
+
+- [GitHub](https://github.com/) - a popular host; most of our [JefferonLab](https://github.com/JeffersonLab) code is hosted here
+- [GitLab](https://gitlab.com/) - another popular host; this is the main GitLab host, but it's possible to "self-host" a GitLab instance
+- [JLab's GitLab](https://code.jlab.org/) - this is Jefferson Lab's GitLab instance; it is new, and you might not have access to it yet,
+  even if you have a JLab account
+
+All of these have similar features, but from the point of view of simply _hosting_ a repository, you will interact with them
+in the same way with standard `git` commands. When you start working collaboratively or using Continuous Integration, then you'll
+start to see their differences.
+
+Since GitHub is very popular, we'll continue this tutorial assuming you are using GitHub. This assumes that:
+- you have a GitHub account
+- you have generated an SSH key pair, and uploaded the public key to GitHub
+
+First, we need to create a GitHub repository. In the upper right corner, click the plus sign, then "New repository". Then,
+1. give it a name; our name was `my_project` (note it doesn't have to match the directory name, but that's conventional)
+1. decide if you want it public or private; private means no one but you can see it, but certain GitHub features may be disabled
+  (depending on your GitHub account type)
+1. you are welcome to set the other settings, but the defaults are good enough for this tutorial
+1. click "Create repository" at the bottom
+
+Now you will see a bunch of text telling you what to do. Some of these commands will look familiar, because you already did most of this!
+Go back to your shell, in your _local_ `git` repository, so that we can link it to your new _remote_ GitHub repository.
+
+List the remote repositories that your local repository knows about:
+```bash
+git remote -v
+```
+There are none, since we haven't added any. Also, `-v` is for verbose, which is useful. Let's add your remote GitHub repository.
+
+On your GitHub repositories front page, you'll see an example `git remote add...` command; you can run that one. My user name is `c-dilks`
+and my repository name is `my_project`, so my command is:
+```bash
+git remote add origin git@github.com:c-dilks/my_project.git
+```
+- `add` means we are adding a new remote
+- `origin` is the _name_ of this remote; `origin` is the standard default name for the _primary_ remote repository to which you will sync
+- `git@github.com:[USER_NAME]/[REPOSITORY_NAME].git` is the SSH address of your repository (HTTPS addresses are discouraged nowadays)
+
+Now run `git remote -v` again, and you'll see your remote:
+```bash
+git remote -v
+```
+```
+origin	git@github.com:c-dilks/my_project.git (fetch)
+origin	git@github.com:c-dilks/my_project.git (push)
+```
+- the name and SSH address are shown
+- `fetch` means "for downloading" and `push` means "for uploading"; they are usually the same address
