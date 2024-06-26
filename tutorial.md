@@ -9,6 +9,11 @@
 > [!TODO]
 > re-run all this with no git configuration
 
+> [!TODO]
+> handle users who do not have SSH keys:
+> - [ ] they can't `push`
+> - [ ] they should use HTTPS for remote URLs
+
 First, let's create a sample repository with some files in it. We provide a script for that, but you need to provide it a directory name;
 it's typical to name the directory after your repository name. You may choose a name; this tutorial will choose the name `my_project`:
 ```bash
