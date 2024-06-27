@@ -375,11 +375,11 @@ others. Next:
   your private key is unencrypted, which means if someone steals it, they can just use it)
 
 Your key pair is now available (should be in `~/.ssh/`). The version that ends in `.pub` is
-public key, and the version that has no file extension is the private key.
+the public key, and the version that has no file extension is the private key.
 
 Next, upload your **public** key (the one with `.pub`) to your account.
 
-Since GitHub is very popular, we'll continue this tutorial focused on GitHub:
+Since most CLAS software is on GitHub, we'll continue this tutorial focused on GitHub:
 1. In the upper right corner, click your avatar
 1. Click "Settings"
 1. Click "SSH and GPG keys"
