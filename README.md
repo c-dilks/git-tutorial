@@ -468,7 +468,7 @@ exist on the `origin` remote.
 > If you got a different failure, probably "Permission denied",
 > then your SSH client is not correctly configured.
 
-Do what it says, which will
+Do what the error says, which will
 _create_ the `main` branch on the `origin` remote:
 ```bash
 git push --set-upstream origin main
@@ -523,8 +523,8 @@ Then when you are on your home computer, run `git pull` and
 get back to work!
 
 > [!NOTE]
-> What if you forget to `pull` and push commits? `git` may
-> complain about conflicts. Follow the directions, and
+> What if you forget to `pull` before making new commits? Attempting to `git push` may
+> return complaints about conflicts. Follow the directions, and
 > [see here for more guidance](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
 
 # Working with Others
