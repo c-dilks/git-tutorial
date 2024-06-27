@@ -658,6 +658,7 @@ you can just run `git push`.
 > `iguana` commit DAG:
 > - click the "Insights" tab on the repository webpage
 > - click "Network Graph" on the left
+>
 > To see the DAG locally:
 > ```bash
 > git log --decorate --oneline --graph
