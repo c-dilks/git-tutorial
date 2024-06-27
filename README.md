@@ -544,10 +544,12 @@ contributions to _any_ GitHub repository.
 > [!NOTE]
 > Forking is a concept specific to GitHub, whereas branching
 > is a `git` concept and applies to any remote host.
-> - A fork is basically a _copy_ of the _full_ repository, a
+> - A **fork** is basically a _copy_ of the _full_ repository, a
 >   copy that _you_ may do whatever _you_ want with
-> - A branch is a pointer to a certain commit; this will
+> - A **branch** is a pointer to a certain commit; this will
 >   be clearer after we create a branch
+
+### Fork a Repository
 
 Let's say you want to make a contribution to
 [Iguana](https://github.com/JeffersonLab/iguana).
@@ -605,6 +607,8 @@ You'll see all the branches and tags that are on `upstream`.
 
 Now you are ready to contribute to `iguana`!
 
+### `git branch`
+
 You can get started working, but you are currently on the
 `main` branch. It is wise to create a new branch first.
 Choose a name that you can remember, something that is
@@ -660,13 +664,12 @@ you can just run `git push`.
 > ```
 > This just shows `HEAD` and the commits that lead to it; to
 > see _everything_, add the `--all` option.
-<!--`-->
-
-> [!TIP]
+>
 > Iguana's commit DAG is _linear_, since Iguana merges pull
 > requests with the _squash_ method. Other repositories use
 > different methods, _e.g._, `coatjava`. Clone it and take
 > a look!
+<!--`-->
 
 > [!TIP]
 > Some of these `git` commands are long and hard to remember.
@@ -675,32 +678,32 @@ you can just run `git push`.
 > documentation if you want to know what they do):
 > ```ini
 > [alias]
->   g="log --decorate --oneline --graph"
->   ga="log --decorate --oneline --graph --all"
->   s="status"
->   d="diff"
->   ds="diff --staged"
->   dn="diff --name-only"
 >   a="add"
->   c="commit"
->   ca="commit -a"
->   p="push"
->   pf="push --force-with-lease"
 >   b="branch --sort=-committerdate --column=dense"
 >   bc="rev-parse --abbrev-ref HEAD"
 >   br="branch --sort=-committerdate --column=dense --remote"
 >   bv="branch -vv"
+>   c="commit"
+>   ca="commit -a"
 >   co="checkout"
 >   cob="checkout -b"
+>   d="diff"
+>   dn="diff --name-only"
+>   ds="diff --staged"
+>   f="fetch"
+>   fo="fetch origin"
+>   fu="fetch upstream"
+>   g="log --decorate --oneline --graph"
+>   ga="log --decorate --oneline --graph --all"
 >   m="merge"
+>   p="push"
+>   pf="push --force-with-lease"
 >   r="rebase"
 >   rc="rebase --continue"
 >   rrhh="reset --hard"
 >   rv="remote -v"
+>   s="status"
 >   u="pull"
->   f="fetch"
->   fo="fetch origin"
->   fu="fetch upstream"
 > ```
 > For example, `git s` will run `git status`
 <!--`-->
@@ -710,7 +713,7 @@ you can just run `git push`.
 While you are working on your branch, work may be ongoing
 on other branches, including `upstream/main`. It's a good
 idea to keep your branch up-to-date with respect to upstream
-changes. You can do this a few different ways:
+changes. You can do this a couple different ways:
 
 1. Backmerging
 
