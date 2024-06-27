@@ -634,7 +634,7 @@ you can just run `git push`.
 > Some more helpful commands for working with branches:
 > - get the current branch name:
 > ```bash
-> git rev-parse --abbrev-ref HEAD
+> git branch --show-current
 > ```
 > - list all the local branches, sorted:
 > ```bash
@@ -680,7 +680,7 @@ you can just run `git push`.
 > [alias]
 >   a="add"
 >   b="branch --sort=-committerdate --column=dense"
->   bc="rev-parse --abbrev-ref HEAD"
+>   bc="branch --show-current"
 >   br="branch --sort=-committerdate --column=dense --remote"
 >   bv="branch -vv"
 >   c="commit"
