@@ -1,12 +1,8 @@
-# Creating a new repository
+# Git Basics: a local repository
+## Creating a new repository
 
 > [!TODO]
 > re-run all this with no git configuration
-
-> [!TODO]
-> handle users who do not have SSH keys:
-> - [ ] they can't `push`
-> - [ ] they should use HTTPS for remote URLs
 
 First, let's create a sample repository with some files in it. We provide a script for that, but you need to provide it a directory name;
 it's typical to name the directory after your repository name. You may choose a name; this tutorial will choose the name `my_project`:
@@ -30,7 +26,7 @@ git init -b main
 This just creates a subdirectory `.git/`.
 This `.git` directory contains all the information about your new `git` repository; you do not need to look at any of its files, or modify them, since you will be using `git` commands instead. The existence of this `.git/` directory makes this current directory a `git` repository.
 
-# Your first commit
+## Your first commit
 
 At any time, you may run `git status` to check the current state of your repository. Let's do it now:
 ```bash
@@ -125,7 +121,7 @@ You have now committed to `git`!
 > - `git cherry-pick`: replay a commit elsewhere
 > - `git rebase`: move a set of consecutive commits elsewhere
 
-# Your second commit
+## Your second commit
 
 Let's get some work done:
 
@@ -253,7 +249,7 @@ Date:   Tue Jun 11 09:43:18 2024 -0400
     my first git commit
 ```
 
-# Checking out other commits
+## Checking out other commits
 
 Up until now, it seems that `git commit` is just like pressing the "save
 button", but `git` offers so much more. For example, you can revert your
@@ -297,7 +293,7 @@ Now your `HEAD` is attached, since it's pointing at your `main` branch.
 > If you do this multiple times, you'll oscillate between the two commits.
 <!--`-->
 
-# Syncing with remotes, e.g., GitHub
+# Remote git repositories (e.g., GitHub)
 
 `git` becomes much more powerful when you synchronize it with a "remote" repository. Typically you need a _host_ for the
 remote repository; some example hosts:
@@ -310,6 +306,20 @@ All of these have similar features, but from the point of view of simply
 _hosting_ a `git` repository, you will interact with them in the same way with
 standard `git` commands. When you start working collaboratively or using
 Continuous Integration, then you'll start to see their differences.
+
+> [!NOTE]
+> To fully benefit from this tutorial, you'll need an account on one of these; example commands
+> will assume GitHub. If you do not want to create an account, you may still keep following
+> the tutorial, keeping in mind that:
+> - you must use HTTPS addresses when running `git clone`, replacing
+>   ```
+>   git@github.com:
+>   ```
+>   with
+>   ```
+>   https://github.com/
+>   ```
+> - you will not be able to run `git push`
 
 ## Getting Access to GitHub/GitLab/`code.jlab.org`
 
@@ -444,7 +454,7 @@ Notice you didn't need `--set-upstream origin main` in your
   `main` branch is named `origin/main` (you'll see that
   in commands such as `git status`)
 
-# Working on multiple computers
+## Working on multiple computers
 
 It's 2024 and many of us work on more than one computer. Thus
 we will eventually have more than one copy of a `git`
