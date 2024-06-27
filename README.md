@@ -818,8 +818,12 @@ pull request":
 > [!TIP]
 > It's perfectly fine (and _preferred_) to create a **draft**
 > PR, even as early as your first commit; this
-> will inform maintainers of your _intent_, and will trigger
-> Continuous Integration (automated tests, etc.)
+> will inform everyone of your _intent_, and will trigger
+> Continuous Integration (automated tests, etc.).
+>
+> Don't be shy! It's better to make a PR than to "hide"
+> your work on a development branch. Maintainers might
+> even help you, _e.g._, with conflict resolution.
 
 In your PR, there are 4 tabs:
 - Conversation: this is the history, things that happened,
