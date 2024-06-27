@@ -711,6 +711,7 @@ you can just run `git push`.
 
 ## Keeping up-to-date with Upstream
 
+### Updating Your Branch
 While you are working on your branch, work may be ongoing
 on other branches, including `upstream/main`. It's a good
 idea to keep your branch up-to-date with respect to upstream
@@ -724,7 +725,7 @@ multiple people are working on a branch.
 
 - More details: [Merging vs. Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
-### (1) Backmerging
+#### (1) Backmerging
 
 Bring upstream's changes to you by merging the upstream's `main` branch into
 yours; this is sometimes called "backmerging". In summary, run:
@@ -734,7 +735,7 @@ git merge upstream/main --no-edit
 git push
 ```
 
-### (2) Rebasing
+#### (2) Rebasing
 
 If you would rather _move_ your changes to _after_ the recent upstream changes,
 _rebase_ your branch onto `upstream/main`;
@@ -757,6 +758,12 @@ unless the branches have significantly diverged. For guidance, see:
 
 - [Merge conflict resolution](https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts)
 - [Rebase conflict resolution](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase)
+
+> [!NOTE]
+> Conflicts can also happen with other commands, such as `git pull` (which may involve
+> the creation of a merge commit).
+
+### Updating Your Fork
 
 Furthermore, your fork's `main` branch may fall behind
 `upstream/main`. I usually update it with `git merge`:
