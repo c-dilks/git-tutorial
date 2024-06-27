@@ -418,6 +418,8 @@ First, we need to create a GitHub repository. In the upper right corner, click t
 Now you will see a bunch of text telling you what to do. Some of these commands will look familiar, because you already did most of this!
 Go back to your shell, in your _local_ `git` repository, so that we can link it to your new _remote_ GitHub repository.
 
+### `git remote`
+
 List the remote repositories that your local repository knows about:
 ```bash
 git remote -v
@@ -443,6 +445,8 @@ origin	git@github.com:c-dilks/my_project.git (push)
 ```
 - the name and SSH address are shown
 - `fetch` means "for downloading" and `push` means "for uploading"; they are usually the same address
+
+### `git push`
 
 Next, synchronize your local repository with the remote by
 _pushing_ your local `main` branch (assumes your `HEAD`
@@ -495,12 +499,16 @@ we will eventually have more than one copy of a `git`
 repository. There are two commands that are used to get
 updates from the common remote repository: `fetch` and `pull`.
 
+### `git fetch`
+
 `git fetch` is used to just get the information from the
 remote repository; it will not alter your local files. It
 needs the remote name (`origin`, here):
 ```bash
 git fetch origin
 ```
+
+### `git pull`
 
 On the other hand, `git pull` will not only `fetch`, but also
 will _synchronize_ your local repository with the remote,
