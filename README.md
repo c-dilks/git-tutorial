@@ -203,6 +203,8 @@ This indicates that all lines have been removed from `info/halls.txt` (since it 
 There are also `git` tools that may be used from within your text editor software or IDE,
 showing in-line `diff` information.
 
+### `git add -A` with `.gitignore`
+
 Let's stage the changes:
 ```
 git add lists.txt
