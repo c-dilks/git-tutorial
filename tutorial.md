@@ -1,9 +1,6 @@
 # Git Basics: a local repository
 ## Creating a new repository
 
-> [!TODO]
-> re-run all this with no git configuration
-
 First, let's create a sample repository with some files in it. We provide a script for that, but you need to provide it a directory name;
 it's typical to name the directory after your repository name. You may choose a name; this tutorial will choose the name `my_project`:
 ```bash
@@ -13,18 +10,16 @@ cd my_project
 ```
 This is just a directory with some text files in it. You can look around, but you won't find anything exciting.
 
-<!--
-> [!TIP]
-> `git` is not meant to store large files. If you want to store large files, it's better to use another service, _e.g._,
-> [GitHub Large File Storage.](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage).
--->
-
 Let's make it a `git` repository. We'll call the "main" branch `main`:
 ```bash
 git init -b main
 ```
 This just creates a subdirectory `.git/`.
 This `.git` directory contains all the information about your new `git` repository; you do not need to look at any of its files, or modify them, since you will be using `git` commands instead. The existence of this `.git/` directory makes this current directory a `git` repository.
+
+> [!IMPORTANT]
+> `git` is not meant to store large files. If you want to store large files, it's better to use another service, _e.g._,
+> [GitHub Large File Storage.](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage).
 
 ## Your first commit
 
