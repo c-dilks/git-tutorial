@@ -302,7 +302,7 @@ Now your `HEAD` is attached, since it's pointing at your `main` branch.
 `git` becomes much more powerful when you synchronize it with a "remote" repository. Typically you need a _host_ for the
 remote repository; some example hosts:
 
-- [GitHub](https://github.com/) - a popular host; most of our [JefferonLab](https://github.com/JeffersonLab) code is hosted here
+- [GitHub](https://github.com/) - a popular host; most of our [JeffersonLab](https://github.com/JeffersonLab) code is hosted here
 - [GitLab](https://gitlab.com/) - another popular host; this is the main GitLab host, but it's possible to "self-host" a GitLab instance
 - [JLab's GitLab](https://code.jlab.org/) - this is Jefferson Lab's new GitLab instance
 
@@ -324,6 +324,7 @@ Continuous Integration, then you'll start to see their differences.
 >   https://github.com/
 >   ```
 > - you will not be able to run `git push`
+<!--`-->
 
 ## Getting Access to GitHub/GitLab/`code.jlab.org`
 
@@ -350,14 +351,14 @@ public key, and the version that has no file extension is the private key.
 Next, upload your **public** key (the one with `.pub`) to your account.
 
 Since GitHub is very popular, we'll continue this tutorial focused on GitHub:
-1. in the upper right corner, click your avatar
-1. click "Settings"
-1. click "SSH and GPG keys"
-1. click "New SSH key
-1. give it a title; "main authentication key" is good enough
-1. the type should be "Authentication key"
-1. copy and paste your **PUBLIC** key to the large box
-1. click "Add SSH key"
+1. In the upper right corner, click your avatar
+1. Click "Settings"
+1. Click "SSH and GPG keys"
+1. Click "New SSH key
+1. Give it a title; "main authentication key" is good enough
+1. The type should be "Authentication key"
+1. Copy and paste your **PUBLIC** key to the large box
+1. Click "Add SSH key"
 
 Finally, configure your SSH client to use this key for GitHub. Add the following lines
 to your `~/.ssh/config` file (change the key name to yours):
@@ -379,11 +380,11 @@ Now you are good to go!
 ## Creating a repository on GitHub
 
 First, we need to create a GitHub repository. In the upper right corner, click the plus sign, then "New repository". Then,
-1. give it a name; our name was `my_project` (note it doesn't have to match the directory name, but that's conventional)
-1. decide if you want it public or private; private means no one but you can see it, but certain GitHub features may be disabled
+1. Give it a name; our name was `my_project` (note it doesn't have to match the directory name, but that's conventional)
+1. Decide if you want it public or private; private means no one but you can see it, but certain GitHub features may be disabled
   (depending on your GitHub account type)
-1. you are welcome to set the other settings, but the defaults are good enough for this tutorial
-1. click "Create repository" at the bottom
+1. You are welcome to set the other settings, but the defaults are good enough for this tutorial
+1. Click "Create repository" at the bottom
 
 Now you will see a bunch of text telling you what to do. Some of these commands will look familiar, because you already did most of this!
 Go back to your shell, in your _local_ `git` repository, so that we can link it to your new _remote_ GitHub repository.
