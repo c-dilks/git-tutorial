@@ -197,8 +197,9 @@ index b0ae735..c55cbff 100644
 This indicates that all lines have been removed from `info/halls.txt` (since it has been "deleted"), and shows the changes you made to `lists.txt`.
 
 > [!TIP]
-> I find this `diff` format a bit hard to read, especially when there are large changes. There are better `diff` tools you can use, for example:
-> - [Delta](https://github.com/dandavison/delta)
+> I find this `diff` format a bit hard to read, especially when there are large changes. There are better `diff` tools you can use, for example, [Delta](https://github.com/dandavison/delta).
+There are also `git` tools that may be used from within your text editor software or IDE,
+showing in-line `diff` information.
 
 Let's stage the changes:
 ```
