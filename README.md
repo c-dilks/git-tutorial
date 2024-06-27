@@ -526,6 +526,11 @@ get back to work!
 > What if you forget to `pull` before making new commits? Attempting to `git push` may
 > return complaints about conflicts. Follow the directions, and
 > [see here for more guidance](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
+> - conflict resolution takes a bit of practice
+> - conflicts can arise in many other commands, such as
+>   - `git merge`: merge one branch into another, creating a new commit with _two_ parent
+>     commits
+>   - `git rebase`
 
 # Working with Others
 ## Forks and Branches
