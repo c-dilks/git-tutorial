@@ -426,14 +426,15 @@ git remote -v
 ```
 There are none, since we haven't added any. Also, `-v` is for verbose, which is useful. Let's add your remote GitHub repository.
 
-On your GitHub repositories front page, you'll see an example `git remote add...` command; you can run that one. My user name is `c-dilks`
+On your GitHub repository's front page, you'll see an example `git remote add...` command; you can run that one. My user name is `c-dilks`
 and my repository name is `my_project`, so my command is:
 ```bash
 git remote add origin git@github.com:c-dilks/my_project.git
 ```
 - `add` means we are adding a new remote
 - `origin` is the _name_ of this remote; `origin` is the standard default name for the _primary_ remote repository to which you will sync
-- `git@github.com:[USER_NAME]/[REPOSITORY_NAME].git` is the SSH address of your repository (HTTPS addresses are discouraged nowadays)
+- `git@github.com:[USER_NAME]/[REPOSITORY_NAME].git` is the SSH address of your repository (HTTPS addresses are discouraged nowadays, but are needed if you do not have SSH authentication
+keys for GitHub)
 
 Now run `git remote -v` again, and you'll see your remote:
 ```bash
