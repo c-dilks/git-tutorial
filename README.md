@@ -748,7 +748,7 @@ git push --force-with-lease
 
 ### Conflict Resolution
 
-Using either method, you may experience CONFLICTs. This can
+When using `git merge` or `git rebase`, you may experience CONFLICTs. This can
 happen when `git` cannot decide which changes to keep/delete
 between your branch and `upstream/main`. Conflict resolution
 is beyond the scope of this tutorial, and the best way to learn
