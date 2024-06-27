@@ -714,21 +714,30 @@ you can just run `git push`.
 While you are working on your branch, work may be ongoing
 on other branches, including `upstream/main`. It's a good
 idea to keep your branch up-to-date with respect to upstream
-changes. You can do this a couple different ways:
+changes. You can do this a couple different ways: backmerging
+or rebasing.
 
-1. Backmerging
+The choice between these methods depends on your preference, and the preference
+of the `upstream` maintainers; backmerging is easier to learn, while rebasing
+creates a cleaner DAG at the cost of rewriting `git` history. Do not rebase if
+multiple people are working on a branch.
 
-Merge the upstream's `main` branch into yours; this is
-sometimes called "backmerging". In summary, run:
+- More details: [Merging vs. Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+
+### (1) Backmerging
+
+Bring upstream's changes to you by merging the upstream's `main` branch into
+yours; this is sometimes called "backmerging". In summary, run:
 ```bash
 git fetch upstream
-git merge upstream/main
+git merge upstream/main --no-edit
 git push
 ```
 
-2. Rebasing
+### (2) Rebasing
 
-Alternatively, _rebase_ your branch onto `upstream/main`;
+If you would rather _move_ your changes to _after_ the recent upstream changes,
+_rebase_ your branch onto `upstream/main`;
 in summary, run:
 ```bash
 git fetch upstream
@@ -736,17 +745,15 @@ git rebase upstream/main
 git push --force-with-lease
 ```
 
-The choice between (1) and (2) depends on your preference, and
-the preference of the `upstream` maintainers; (1) is easier
-whereas (2) creates a cleaner DAG at the cost of rewriting
-`git` history (which is why `--force-with-lease` is needed).
+### Conflict Resolution
 
-- More details: [Merging vs. Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
-
-In either (1) or (2), you may experience CONFLICTs. This can
+Using either method, you may experience CONFLICTs. This can
 happen when `git` cannot decide which changes to keep/delete
 between your branch and `upstream/main`. Conflict resolution
-is beyond the scope of this tutorial; for guidance, see:
+is beyond the scope of this tutorial, and the best way to learn
+is to deal with it when it happens to your own code, since it
+takes a bit of practice. It's generally not too difficult,
+unless the branches have significantly diverged. For guidance, see:
 
 - [Merge conflict resolution](https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts)
 - [Rebase conflict resolution](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase)
