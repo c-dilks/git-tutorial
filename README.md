@@ -551,7 +551,7 @@ contributions to _any_ GitHub repository.
 
 Let's say you want to make a contribution to
 [Iguana](https://github.com/JeffersonLab/iguana).
-Fork it:
+Fork it (or better yet, pick a different repository and fork that instead):
 - upper right corner, click "Fork", then "Create Fork"
 
 Next, _clone_ your fork, which will download the repository to
