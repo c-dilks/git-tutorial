@@ -8,6 +8,19 @@ the following is another one, for the CLAS Collaboration Meeting software tutori
 June 2024.
 
 # Git Basics: a local repository
+
+## Who are you?
+
+You must identify yourself to `git`. For example, if your name is "Your Name", run
+```bash
+git config --global user.name "Your Name"
+```
+You also need an email address; for GitHub I like to use [a no-reply address](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address):
+```bash
+git config --global user.email "ID+USERNAME@users.noreply.github.com
+```
+These commands will write to your `~/.gitconfig`, where you may add other `git` configurations.
+
 ## Creating a new repository
 
 First, let's create a sample directory with some files in it; we'll turn it into a `git` repository. We provide a script for that, but you need to provide it a directory name;
