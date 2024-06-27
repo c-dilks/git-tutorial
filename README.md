@@ -158,6 +158,8 @@ Run `git status` and it will say that:
 - `lists.txt` has been modified; this makes sense, we changed it
 - `info/halls.txt` has been deleted; this makes sense, since we renamed it, but the new file `info/jlab_halls.txt` is not yet tracked
 
+### `git diff`
+
 To see what we have changed, use `git diff`; you'll see something like:
 ```diff
 diff --git a/info/halls.txt b/info/halls.txt
