@@ -776,6 +776,17 @@ git push
 If you don't commit to `main`, you won't have to worry
 about conflicts on `main`.
 
+> [!TIP]
+> Alternatively, GitHub forks may show a "Sync fork" button, which will do the same; however,
+> this will only update your remote (`origin`) `main` branch. You should pull it to your
+> local `main` branch:
+> ```bash
+> git checkout main
+> git pull
+> ```
+<!--`-->
+
+
 ## Pull Requests
 
 A pull request (PR) is a proposal to merge one branch into
