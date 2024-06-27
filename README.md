@@ -40,7 +40,9 @@ This just creates a subdirectory `.git/`.
 This `.git` directory contains all the information about your new `git` repository; you do not need to look at any of its files, or modify them, since you will be using `git` commands instead. The existence of this `.git/` directory makes this current directory a `git` repository.
 
 > [!IMPORTANT]
-> `git` is not meant to store large files. If you want to store large files, it's better to use another service, _e.g._,
+> `git` is _not_ meant to store large files, such as ROOT or HIPO files. It
+> works the best for text files, namely, code. If you want to store large
+> files, it's better to use another service, _e.g._,
 > [GitHub Large File Storage.](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage).
 
 ## Your first commit
