@@ -338,10 +338,13 @@ _hosting_ a `git` repository, you will interact with them in the same way with
 standard `git` commands. When you start working collaboratively or using
 Continuous Integration, then you'll start to see their differences.
 
-> [!NOTE]
-> To fully benefit from this tutorial, you'll need an account on one of these; example commands
-> will assume GitHub. If you do not want to create an account, you may still keep following
-> the tutorial, keeping in mind that:
+## Getting Access to GitHub/GitLab/`code.jlab.org`
+
+> [!IMPORTANT]
+> You may skip this section, if you want, but to fully benefit from this
+> tutorial, you'll need an account on a `git` remote host.
+> If you do not want to create an account, you may still
+> keep following the tutorial, keeping in mind that:
 > - you must use HTTPS addresses when running `git clone`, replacing
 >   ```
 >   git@github.com:
@@ -353,7 +356,6 @@ Continuous Integration, then you'll start to see their differences.
 > - you will not be able to run `git push`
 <!--`-->
 
-## Getting Access to GitHub/GitLab/`code.jlab.org`
 
 To use any of the above, you need an account on the website, and an SSH key pair: a public
 key, to be uploaded to the website, and a private key, which you must not share. Think of
