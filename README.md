@@ -725,7 +725,7 @@ multiple people are working on a branch.
 
 - More details: [Merging vs. Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
-#### (1) Backmerging
+**(1) Backmerging**
 
 Bring upstream's changes to you by merging the upstream's `main` branch into
 yours; this is sometimes called "backmerging". In summary, run:
@@ -735,7 +735,7 @@ git merge upstream/main --no-edit
 git push
 ```
 
-#### (2) Rebasing
+**(2) Rebasing**
 
 If you would rather _move_ your changes to _after_ the recent upstream changes,
 _rebase_ your branch onto `upstream/main`;
