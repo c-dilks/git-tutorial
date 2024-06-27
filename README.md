@@ -120,7 +120,7 @@ Now if you run `git status`, it will just say that `data/` and `sample_data.dat`
 git log
 ```
 ```
-commit 8d2de90d0635e3e02160a62fd9920c1c29b1ae2f
+commit 8d2de90d0635e3e02160a62fd9920c1c29b1ae2f (HEAD -> main)
 Author: Christopher Dilks <c-dilks@users.noreply.github.com>
 Date:   Tue Jun 11 09:43:18 2024 -0400
 
