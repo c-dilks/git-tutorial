@@ -11,7 +11,7 @@ June 2024.
 
 ## Who are you?
 
-You must identify yourself to `git`. For example, if your name is "Your Name", run
+You must identify yourself to `git`; see your `~/.gitconfig` file to check if you already have done this. To set your name, for example if your name is "Your Name", run
 ```bash
 git config --global user.name "Your Name"
 ```
