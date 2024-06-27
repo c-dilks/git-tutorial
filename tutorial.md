@@ -1,9 +1,3 @@
-# Prerequisites
-
-- [ ] generate GitHub SSH key pair
-- [ ] fork Iguana
-  - upper right corner, click "Fork", then "Create Fork"
-
 # Creating a new repository
 
 > [!TODO]
@@ -310,17 +304,65 @@ remote repository; some example hosts:
 
 - [GitHub](https://github.com/) - a popular host; most of our [JefferonLab](https://github.com/JeffersonLab) code is hosted here
 - [GitLab](https://gitlab.com/) - another popular host; this is the main GitLab host, but it's possible to "self-host" a GitLab instance
-- [JLab's GitLab](https://code.jlab.org/) - this is Jefferson Lab's GitLab instance; it is new, and you might not have access to it yet,
-  even if you have a JLab account
+- [JLab's GitLab](https://code.jlab.org/) - this is Jefferson Lab's new GitLab instance
 
-All of these have similar features, but from the point of view of simply _hosting_ a repository, you will interact with them
-in the same way with standard `git` commands. When you start working collaboratively or using Continuous Integration, then you'll
-start to see their differences.
+All of these have similar features, but from the point of view of simply
+_hosting_ a `git` repository, you will interact with them in the same way with
+standard `git` commands. When you start working collaboratively or using
+Continuous Integration, then you'll start to see their differences.
 
-Since GitHub is very popular, we'll continue this tutorial assuming you are using GitHub. This assumes that:
-- you have a GitHub account
-- you have generated an SSH key pair, and uploaded the public key to GitHub
-- you have configured SSH client to use this key for GitHub
+## Getting Access to GitHub/GitLab/`code.jlab.org`
+
+To use any of the above, you need an account on the website, and an SSH key pair: a public
+key, to be uploaded to the website, and a private key, which you must not share. Think of
+your public key as a padlock and your private key as the key to that padlock. To generate a new
+key pair, you may use `ssh-keygen`. First, navigate to your home directory, then run it:
+```bash
+ssh-keygen -t ed25519
+```
+The `-t` option is the key type; both GitHub and GitLab accept `ed25519` keys, and possibly
+others. Next:
+- It asks you to "Enter a file in which to save the key"
+  - the default is only okay if that's your only key (unlikely), so choose
+    another name; be sure to use the same suggested location, however (`.ssh` within
+    your home directory)
+  - I typically use a file name that includes the server name "GitHubAuthentication"
+- Enter a passphrase; you should probably do this (blank means no passphrase, which means
+  your private key is unencrypted, which means if someone steals it, they can just use it)
+
+Your key pair is now available (should be in `~/.ssh/`). The version that ends in `.pub` is
+public key, and the version that has no file extension is the private key.
+
+Next, upload your **public** key (the one with `.pub`) to your account.
+
+Since GitHub is very popular, we'll continue this tutorial focused on GitHub:
+1. in the upper right corner, click your avatar
+1. click "Settings"
+1. click "SSH and GPG keys"
+1. click "New SSH key
+1. give it a title; "main authentication key" is good enough
+1. the type should be "Authentication key"
+1. copy and paste your **PUBLIC** key to the large box
+1. click "Add SSH key"
+
+Finally, configure your SSH client to use this key for GitHub. Add the following lines
+to your `~/.ssh/config` file (change the key name to yours):
+```
+# GitHub
+Host github.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/GitHubAuthentication
+```
+
+Now you are good to go!
+
+> [!TIP]
+> You will probably get annoyed at having to enter yet another password each time you
+> use certain `git` commands. There are ways to "manage" your keys such that, for example,
+> you only need to enter your password once every 8 hours. The `ssh-agent` program is
+> one way to do something like this; this is outside the scope of this tutorial.
+
+## Creating a repository on GitHub
 
 First, we need to create a GitHub repository. In the upper right corner, click the plus sign, then "New repository". Then,
 1. give it a name; our name was `my_project` (note it doesn't have to match the directory name, but that's conventional)
@@ -451,8 +493,10 @@ contributions to _any_ GitHub repository.
 
 Let's say you want to make a contribution to
 [Iguana](https://github.com/JeffersonLab/iguana).
-Fork it (see [prerequisites guide](prerequisites.md)), then
-_clone_ your fork, which will download the repository to
+Fork it:
+- upper right corner, click "Fork", then "Create Fork"
+
+Next, _clone_ your fork, which will download the repository to
 your current working directory into a folder named `iguana`.
 - In the upper right corner, click the green "Code" button
 - Choose the SSH tab (if you're not logged in, use HTTPS, but
@@ -561,7 +605,7 @@ you can just run `git push`.
 <!--`-->
 
 > [!TIP]
-> Iguana's commit DAG is _linaer_, since Iguana merges pull
+> Iguana's commit DAG is _linear_, since Iguana merges pull
 > requests with the _squash_ method. Other repositories use
 > different methods, _e.g._, `coatjava`. Clone it and take
 > a look!
