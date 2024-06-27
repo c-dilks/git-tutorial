@@ -7,7 +7,7 @@ There are _many_ `git` tutorials online, and even `man gittutorial` can help you
 the following is another one, for the CLAS Collaboration Meeting software tutorial session,
 June 2024.
 
-# Git Basics: a local repository
+# `git` Basics: a local repository
 
 ## Who are you?
 
@@ -324,7 +324,7 @@ Now your `HEAD` is attached, since it's pointing at your `main` branch.
 > If you do this multiple times, you'll oscillate between the two commits.
 <!--`-->
 
-# Remote git repositories (e.g., GitHub)
+# Remote `git` Repositories
 
 `git` becomes much more powerful when you synchronize it with a "remote" repository. Typically you need a _host_ for the
 remote repository; some example hosts:
@@ -338,7 +338,7 @@ _hosting_ a `git` repository, you will interact with them in the same way with
 standard `git` commands. When you start working collaboratively or using
 Continuous Integration, then you'll start to see their differences.
 
-## Getting Access to GitHub/GitLab/`code.jlab.org`
+## SSH Access to a Remote Host, e.g., GitHub
 
 > [!IMPORTANT]
 > You may skip this section, if you want, but to fully benefit from this
@@ -634,7 +634,7 @@ you can just run `git push`.
 <!--`-->
 
 > [!TIP]
-> Git commits form a Directed Acyclic Graph (DAG). Each commit
+> `git` commits form a Directed Acyclic Graph (DAG). Each commit
 > may have one or more _parent_ commits, and a commit can
 > have one or more subsequent _child_ commits. To see the
 > `iguana` commit DAG:
