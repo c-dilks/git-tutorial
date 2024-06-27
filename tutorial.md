@@ -1,3 +1,12 @@
+# Introduction
+
+This tutorial aims to teach the basics of `git`, "the stupid content tracker"
+(that's actually its description, according to `man git`).
+
+There are _many_ `git` tutorials online, and even `man gittutorial` can help you get started;
+the following is another one, for the CLAS Collaboration Meeting software tutorial session,
+June 2024.
+
 # Git Basics: a local repository
 ## Creating a new repository
 
