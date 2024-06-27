@@ -126,6 +126,7 @@ Date:   Tue Jun 11 09:43:18 2024 -0400
 
     my first git commit
 ```
+- press `q` to exit
 - The long hexadecimal number `8d2de90d0635e3e02160a62fd9920c1c29b1ae2f` is the "commit hash", a cryptographic hash based on your files, author name,
 commit message, and more; it is a _unique_ identifier for this commit.
 - `HEAD -> main` means that your current state, called `HEAD`, is at the same point as the current `main` branch
