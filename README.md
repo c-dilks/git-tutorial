@@ -798,6 +798,8 @@ included in `main`, make a PR.
 > [!NOTE]
 > GitLab calls these "Merge Requests"
 
+### Creating a Pull Request
+
 You can start a Pull Request by going to the `upstream`
 repository's webpage on GitHub. You might already see
 a notification about your branch and a button to create
@@ -825,6 +827,8 @@ pull request":
 > your work on a development branch. Maintainers might
 > even help you, _e.g._, with conflict resolution.
 
+### Viewing a Pull Request
+
 In your PR, there are 4 tabs:
 - Conversation: this is the history, things that happened,
   and review comments and conversations
@@ -840,6 +844,11 @@ In your PR, there are 4 tabs:
   - validation
 - Files changed: perhaps the most important tab, this shows
   the `git diff` between your branch and the target branch
+
+Other pull requests may be found in the top-level "Pull Requests"
+tab. GitLab's merge requests have similar tabs.
+
+### Pull Request Review and Merge
 
 When you are ready for your PR to be _reviewed_,
 click the "mark as ready" button, which will change your
