@@ -145,7 +145,7 @@ You have now committed to `git`!
 > to do `git` operations such as
 > - `git revert`: undo a commit with a new commit
 > - `git cherry-pick`: replay a commit elsewhere
-> - `git rebase`: move a set of consecutive commits elsewhere
+> - `git rebase`: move a set of consecutive commits elsewhere; it can also combine, delete, and re-order those commits
 
 ## Your second commit
 
