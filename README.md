@@ -784,6 +784,7 @@ about conflicts on `main`.
 > git checkout main
 > git pull
 > ```
+> otherwise if you make a new branch from `main`, it will be out-of-date already.
 <!--`-->
 
 
