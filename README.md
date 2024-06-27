@@ -10,8 +10,8 @@ June 2024.
 # Git Basics: a local repository
 ## Creating a new repository
 
-First, let's create a sample repository with some files in it. We provide a script for that, but you need to provide it a directory name;
-it's typical to name the directory after your repository name. You may choose a name; this tutorial will choose the name `my_project`:
+First, let's create a sample directory with some files in it; we'll turn it into a `git` repository. We provide a script for that, but you need to provide it a directory name;
+it's typical to name the directory the same name you want your repository to be. This tutorial will use the name `my_project`:
 ```bash
 git clone https://www.github.com/c-dilks/git-tutorial.git
 git-tutorial/make_example_project.sh my_project
@@ -31,6 +31,8 @@ This `.git` directory contains all the information about your new `git` reposito
 > [GitHub Large File Storage.](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage).
 
 ## Your first commit
+
+### `git status`
 
 At any time, you may run `git status` to check the current state of your repository. Let's do it now:
 ```bash
@@ -56,6 +58,8 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 > [!TIP]
 > For directories, only the directory name is shown. Use `git status -u` to see within.
+
+### `git add`
 
 To tell `git` to care about certain files, use `git add`. Let's add `lists.txt` and the full `info/` subdirectory, and assume that we do not want `git` to worry about the `.dat` files:
 ```bash
@@ -83,6 +87,8 @@ Now re-run `git status`. The files under "Changes to be committed" are called "s
 > ```
 <!--`-->
 
+### `git commit`
+
 Next, let's make a commit, which is basically a "snapshot" of the _staged_ files. You should include a _commit message_ which describes the commit, using the `-m` option.
 ```bash
 git commit -m "my first git commit"
@@ -93,6 +99,8 @@ git commit -m "my first git commit"
 > be `vim`, where you can write your commit message; this is convenient if you
 > want to write a longer message, but if you're not familiar with `vim`, you may
 > use `git config` to change it to another text editor.
+
+### `git log`
 
 Now if you run `git status`, it will just say that `data/` and `sample_data.dat` are untracked (since we haven't added them before). To see your commit, use `git log`:
 ```bash
