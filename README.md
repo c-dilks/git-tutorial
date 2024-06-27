@@ -752,11 +752,11 @@ is beyond the scope of this tutorial; for guidance, see:
 - [Rebase conflict resolution](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase)
 
 Furthermore, your fork's `main` branch may fall behind
-`upstream/main`. The easiest way to update it is to:
+`upstream/main`. I usually update it with `git merge`:
 ```bash
 git checkout main   # switch to your 'main'
-git fetch origin
-git merge origin/main
+git fetch upstream
+git merge upstream/main
 git push
 ```
 If you don't commit to `main`, you won't have to worry
