@@ -372,7 +372,7 @@ others. Next:
   - the default is only okay if that's your only key (unlikely), so choose
     another name; be sure to use the same suggested location, however (`.ssh` within
     your home directory)
-  - I typically use a file name that includes the server name "GitHubAuthentication"
+  - I typically use a file name that includes the server name, such as "GitHubAuthentication"
 - Enter a passphrase; you should probably do this (blank means no passphrase, which means
   your private key is unencrypted, which means if someone steals it, they can just use it)
 
@@ -392,7 +392,7 @@ Since most CLAS software is on GitHub, we'll continue this tutorial focused on G
 1. Click "Add SSH key"
 
 Finally, configure your SSH client to use this key for GitHub. Add the following lines
-to your `~/.ssh/config` file (change the key name to yours):
+to your `~/.ssh/config` file (create it, if you don't have it), changing the key name to yours:
 ```
 # GitHub
 Host github.com
