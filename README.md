@@ -1,4 +1,4 @@
-:star: **This has been moved to:** <https://code.jlab.org/hallb/clas12/tutorials/git-intro> :star:
+:star: **This has been migrated into:** <https://code.jlab.org/hallb/clas12/swwg> :star:
 
 ---
 
