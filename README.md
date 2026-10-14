@@ -1,3 +1,7 @@
+:star: **This has been moved to:** <https://code.jlab.org/hallb/clas12/tutorials/git-intro> :star:
+
+---
+
 # Introduction
 
 This tutorial aims to teach the basics of `git`, "the stupid content tracker"
